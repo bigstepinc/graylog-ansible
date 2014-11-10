@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  user: root
+  port: 22
+  roles:
+    - { role: common, tags: common } 
+    - { role: mongodb, tags: mongodb } 
+    - { role: elasticsearch, tags: elasticsearch }
+    - { role: graylog2, tags: graylog2 }
+    - { role: nginx, tags: nginx }
+    - { role: finish, tags: finish }

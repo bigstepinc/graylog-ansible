@@ -1,0 +1,4 @@
+---
+
+- name: Print access Info
+  debug: msg="your graylog2 instace is now accessible at https://{{ server_name }}"

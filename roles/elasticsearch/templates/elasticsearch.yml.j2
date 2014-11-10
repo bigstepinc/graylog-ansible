@@ -1,0 +1,11 @@
+---
+network.host: "127.0.0.1"
+node.name: "graylog2_elasticsearch"
+index.number_of_replicas: 0
+index.number_of_shards: 2
+script.disable_dynamic: true
+cluster.name: "graylog2"
+transport.tcp.port: "9300"
+discovery.zen.ping.unicast.hosts: []
+discovery.zen.ping.multicast.enabled: false
+http.port: "9200"

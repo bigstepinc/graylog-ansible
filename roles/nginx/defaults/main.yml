@@ -1,0 +1,4 @@
+---
+
+use_self_signed_cert: "yes"
+server_name: "{{ ansible_fqdn }}"

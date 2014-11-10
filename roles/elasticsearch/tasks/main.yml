@@ -1,0 +1,36 @@
+---
+
+- name: Add Elasticsearch repo
+  copy: src=elasticsearch.repo dest=/etc/yum.repos.d/elasticsearch.repo
+  tags: [ elasticsearch-repo , elasticsearch ]
+
+- name: Add Elasticsearch repo key
+  rpm_key: state=present key=http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+  tags: [ elasticsearch-repo , elasticsearch ]
+
+- name: Install elasticsearch
+  yum: name=elasticsearch-1.3.4 state=latest
+  tags: elasticsearch
+
+- name: Add config file
+  template: src=elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml backup=yes
+  tags: elasticsearch
+  notify: restart elasticsearch
+
+- name: Configure ES_HEAP_SIZE
+  lineinfile: dest=/etc/sysconfig/elasticsearch state=present regexp="{{ item.regexp }}" line="{{ item.line }}" backup=yes
+  with_items:
+    - { regexp: '^#?ES_HEAP_SIZE=', line: 'ES_HEAP_SIZE={{ ansible_memtotal_mb // 2 }}m' }
+    - { regexp: '^#?MAX_LOCKED_MEMORY=', line: 'MAX_LOCKED_MEMORY=unlimited' }
+    - { regexp: '^#?MAX_OPEN_FILES', line: 'MAX_OPEN_FILES=65535' }
+  notify: restart elasticsearch
+  tags: elasticsearch
+
+- name: Copy file descriptors configuration file
+  copy: src=10-elasticsearch.conf dest=/etc/security/limits.d/ backup=yes
+  notify: restart elasticsearch
+  tags: elasticsearch
+
+- name: Make sure service is added to startup
+  service: name=elasticsearch state=started enabled=yes
+  tags: elasticsearch

@@ -1,0 +1,26 @@
+---
+
+- name: RAW install libselinux-python
+  raw: yum -y install libselinux-python
+  tags:
+   - common
+
+- name: Add EPEL Repo
+  yum: name=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
+  tags:
+   - common
+   - epel
+
+- name: Install openjdk-7-jre
+  yum: name=java-1.7.0-openjdk state=present
+  tags:
+   - common
+   - openjdk
+   - java
+
+- name: Add iptables rules
+  template: src=iptables.j2 dest=/etc/sysconfig/iptables backup=yes owner=root group=root mode=0600
+  notify: restart iptables
+  tags:
+   - common
+   - iptables

@@ -1,0 +1,26 @@
+---
+
+- name: Copy mongo repo file
+  copy: src=mongodb.repo dest=/etc/yum.repos.d/mongodb.repo owner=root group=root
+  tags: [mongorepo, mongodb]
+
+- name: Install mongo-org
+  yum: name=mongodb-org state=latest
+  notify: restart mongodb
+  tags: mongodb
+
+- name: Install pip
+  yum: name=python-pip state=latest
+  tags: mongodb
+
+- name: Install pymongo
+  pip: name=pymongo
+
+- name: Make sure service is added to startup
+  service: name=mongod state=started enabled=yes
+  tags: mongodb
+
+- name: create mongo user for graylog2
+  mongodb_user: database=graylog2 name={{ mongodb_user }} password={{ mongodb_password }} roles='readWrite,dbAdmin,userAdmin' state=present
+  tags: mongodb
+

@@ -1,0 +1,15 @@
+---
+
+graylog2_version: 0.91
+
+password_secret: thisisnotasecurepassword
+
+# generated using echo -n yourpassword | shasum -a 256
+root_password_unencrypted: yourpassword
+root_password_sha2: e3c652f0ba0b4801205814f8b6bc49672c4c74e25b497770bb89b22cdeb4e951
+
+mongodb_user: graylog2_user
+mongodb_password: 123456
+
+graylog2_input_port: 5555
+input_type: org.graylog2.inputs.raw.udp.RawUDPInput
