@@ -7,7 +7,7 @@
  - It also adds a default listener to port 514. Because of graylog2 not being able to bind to port 514 directly, there's an iptables rule that redirects traffic from port 514 to 5555 udp(or any port you set graylog2_input_port to). 
  - More redirects cand be added easily. The input that listens to port 5555 is also aded automatically, as a raw UDP Input, but it can be changed easily to something else.
  - The input types are:
-```
+```text
 org.graylog2.inputs.amqp.AMQPInput
 org.graylog2.inputs.codecs.CodecsModule
 org.graylog2.inputs.gelf.http.GELFHttpInput
@@ -36,6 +36,7 @@ org.graylog2.plugin.inputs.MessageInput
 
 
 ## Available Variables in Ansible
+
 
 ```
 server_name: "{{ ansible_fqdn }}"
