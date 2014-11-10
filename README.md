@@ -1,5 +1,9 @@
 # Graylog2 Ansible Playbook - Batteries included
 
+### Installs all the necesary requirements for graylog2-server and graylog2-web to run.
+
+
+
 
 ## Info
  - This installs all the necesary packages and configures them properly in order for you to have a graylog2 server and web in about 15 minutes
@@ -29,7 +33,7 @@ org.graylog2.plugin.inject.Graylog2Module
 org.graylog2.plugin.inputs.MessageInput
 ```
 
- - There is also a role that installs nginx and generates a self signed ceritifate. This was solely done because I do not like java and java keystores and it was easier for me this way. You could also set use_self_signed_cert to no, and add your own cert and key in the format of {{ server_name }}.crt and {{ server_name }}.key
+ - There is also a role that installs nginx and generates a self signed ceritifate. At the end you will be able to access the graylo2-web interface using https://IP.AD.DR or https://servername. This was solely done because I do not like java and java keystores and it was easier for me this way. You could also set use_self_signed_cert to no, and add your own cert and key in the format of {{ server_name }}.crt and {{ server_name }}.key
 
 ## Asumptions
  - You will use this on CentOS 6.X. Not tested on version 7 
@@ -63,7 +67,7 @@ use_self_signed_cert: "yes"
 
 ## Contact
 
-Marius Boeru <marius.boeru@bigstep.com>
+Developed for Bigstep by Marius Boeru <marius.boeru at bigstep com>
  * https://twitter.com/mboeru/
  * https://github.com/mboeru/
  * https://github.com/bigstepinc/
