@@ -1,6 +1,6 @@
 # Graylog2 Ansible Playbook - Batteries included
 
-### Installs all the necesary requirements for graylog2-server and graylog2-web to run.
+Installs all the necesary requirements for graylog2-server and graylog2-web to run.
 
 
 
