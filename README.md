@@ -32,6 +32,7 @@ org.graylog2.inputs.transports.TransportsModule
 org.graylog2.plugin.inject.Graylog2Module
 org.graylog2.plugin.inputs.MessageInput
 ```
+ - Input json format borrowed from hggh https://github.com/hggh/graylog2-vagrant/blob/master/modules/repos/files/create_graylog2_inputs_gelf
 
  - There is also a role that installs nginx and generates a self signed ceritifate. At the end you will be able to access the graylo2-web interface using https://IP.AD.DR or https://servername. This was solely done because I do not like java and java keystores and it was easier for me this way. You could also set use_self_signed_cert to no, and add your own cert and key in the format of {{ server_name }}.crt and {{ server_name }}.key
 
