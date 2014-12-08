@@ -7,12 +7,9 @@
 - name: Create SSL Directory
   file: path=/etc/nginx/ssl state=directory
 
-
-
 - name: create ssl vhost
   template: src=ssl_vhost.conf dest=/etc/nginx/conf.d/{{ server_name }}.conf backup=yes
   notify: reload nginx
-
 
 - name: create self-signed SSL cert
   command: openssl req -new -nodes -x509 -subj "/C=UK/ST=London/L=London/O=IT/CN={{server_name}}" -days 3650 -keyout /etc/nginx/ssl/{{ server_name }}.key -out /etc/nginx/ssl/{{ server_name }}.crt -extensions v3_ca creates=/etc/nginx/ssl/{{ server_name }}.crt

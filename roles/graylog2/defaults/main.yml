@@ -1,6 +1,6 @@
 ---
 
-graylog2_version: 0.91
+graylog2_version: 0.92
 
 password_secret: thisisnotasecurepassword
 
@@ -13,3 +13,4 @@ mongodb_password: 123456
 
 graylog2_input_port: 5555
 input_type: org.graylog2.inputs.raw.udp.RawUDPInput
+
