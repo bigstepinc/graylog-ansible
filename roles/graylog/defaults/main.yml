@@ -12,5 +12,5 @@ mongodb_user: graylog_user
 mongodb_password: 123456
 
 graylog_input_port: 5555
-input_type: org.graylog.inputs.raw.udp.RawUDPInput
+input_type: org.graylog2.inputs.raw.udp.RawUDPInput
 
