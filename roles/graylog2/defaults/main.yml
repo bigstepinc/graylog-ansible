@@ -1,6 +1,6 @@
 ---
 
-graylog2_version: 0.92
+graylog2_version: 1.0
 
 password_secret: thisisnotasecurepassword
 

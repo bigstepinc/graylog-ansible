@@ -11,7 +11,7 @@
   tags: graylog2
 
 - name: Adding graylog2 repo
-  yum: name=https://packages.graylog2.org/repo/packages/graylog2-{{ graylog2_version }}-repository-el6_latest.rpm state=present 
+  yum: name=https://packages.graylog2.org/repo/packages/graylog-{{ graylog2_version }}-repository-el6_latest.rpm state=present 
   tags: graylog2
 
 - name: Install graylog2-server and graylog2-web-interface

@@ -9,7 +9,7 @@
   tags: [ elasticsearch-repo , elasticsearch ]
 
 - name: Install elasticsearch
-  yum: name=elasticsearch-1.3.4 state=latest
+  yum: name=elasticsearch state=latest
   tags: elasticsearch
 
 - name: Add config file
