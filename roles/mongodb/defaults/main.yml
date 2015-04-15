@@ -1,4 +1,4 @@
 ---
 
-mongodb_user: graylog2_user
+mongodb_user: graylog_user
 mongodb_password: 123456

@@ -1,5 +1,5 @@
 ---
 
-graylog2_input_port: 5555
+graylog_input_port: 5555
 
 ssh_port: 22

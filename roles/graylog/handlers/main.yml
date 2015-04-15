@@ -1,0 +1,11 @@
+---
+
+- name: restart graylog-server
+  service: name=graylog-server state=restarted
+
+- name: restart graylog-web
+  service: name=graylog-web state=restarted
+
+- name: Add input into graylog
+  shell: 'sleep 20; curl -X POST -H "Content-Type: application/json" -d "`cat /etc/graylog/input_add.json`" http://admin:{{ root_password_unencrypted }}@127.0.0.1:12900/system/inputs'
+

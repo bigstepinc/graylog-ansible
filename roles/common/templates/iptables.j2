@@ -7,7 +7,7 @@
 -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT 
 -A INPUT -p icmp -j ACCEPT 
 -A INPUT -i lo -j ACCEPT 
--A INPUT -p udp -m udp --dport {{ graylog2_input_port }} -j ACCEPT 
+-A INPUT -p udp -m udp --dport {{ graylog_input_port }} -j ACCEPT 
 -A INPUT -p udp -m udp --dport 514 -j ACCEPT 
 -A INPUT -p udp -m udp --dport 161 -j ACCEPT 
 -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT 
@@ -21,6 +21,6 @@ COMMIT
 :PREROUTING ACCEPT [2194:116152]
 :POSTROUTING ACCEPT [170417:10249839]
 :OUTPUT ACCEPT [170417:10249839]
--A PREROUTING -p udp -m udp --dport 514 -j REDIRECT --to-ports {{ graylog2_input_port }}
+-A PREROUTING -p udp -m udp --dport 514 -j REDIRECT --to-ports {{ graylog_input_port }}
 COMMIT
 # Completed on Sat Nov  1 16:03:09 2014

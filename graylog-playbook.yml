@@ -5,6 +5,6 @@
     - { role: common, tags: common } 
     - { role: mongodb, tags: mongodb } 
     - { role: elasticsearch, tags: elasticsearch }
-    - { role: graylog2, tags: graylog2 }
+    - { role: graylog, tags: graylog }
     - { role: nginx, tags: nginx }
     - { role: finish, tags: finish }

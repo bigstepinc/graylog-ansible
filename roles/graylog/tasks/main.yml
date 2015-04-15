@@ -1,0 +1,44 @@
+---
+
+- name: Stop graylog-web
+  service: name=graylog-web state=stopped
+  when: upgrade is defined
+  tags: graylog
+
+- name: Stop graylog-server
+  service: name=graylog-server state=stopped
+  when: upgrade is defined
+  tags: graylog
+
+- name: Adding graylog repo
+  yum: name=https://packages.graylog2.org/repo/packages/graylog-{{ graylog_version }}-repository-el6_latest.rpm state=present 
+  tags: graylog
+
+- name: Install graylog-server and graylog-web-interface
+  yum: name={{ item }} state=latest disable_gpg_check=yes
+  tags: graylog
+  with_items:
+    - graylog-server
+    - graylog-web
+
+- name: configure graylog-server
+  template: src=server.conf.j2 dest=/etc/graylog/server/server.conf backup=yes
+  notify: restart graylog-server
+
+- name: configure graylog-web
+  template: src=web.conf.j2 dest=/etc/graylog/web/web.conf backup=yes
+  notify: restart graylog-web
+
+- name: Make sure service graylog-server is added to startup
+  service: name=graylog-server state=started enabled=yes
+  tags: graylog
+
+- name: Make sure service graylog-web is added to startup
+  service: name=graylog-web state=started enabled=yes
+  tags: graylog
+
+- name: Copy input json to server
+  template: src=input_add.json.j2 dest=/etc/graylog/input_add.json
+  notify: Add input into graylog
+  tags: input_add
+

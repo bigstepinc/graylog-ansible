@@ -1,38 +1,38 @@
-# Graylog2 Ansible Playbook - Batteries included
+# Graylog Ansible Playbook - Batteries included
 
-Installs all the necesary requirements for graylog2-server and graylog2-web to run.
+Installs all the necesary requirements for graylog-server and graylog-web to run.
 
 
 
 
 ## Info
- - This installs all the necesary packages and configures them properly in order for you to have a graylog2 server and web in about 15 minutes
- - It installs and configures elasticsearch, mongodb, nginx, graylog2-server and graylog-web
- - It also adds a default listener to port 514. Because of graylog2 not being able to bind to port 514 directly, there's an iptables rule that redirects traffic from port 514 to 5555 udp(or any port you set graylog2_input_port to). 
+ - This installs all the necesary packages and configures them properly in order for you to have a graylog server and web in about 15 minutes
+ - It installs and configures elasticsearch, mongodb, nginx, graylog-server and graylog-web
+ - It also adds a default listener to port 514. Because of graylog not being able to bind to port 514 directly, there's an iptables rule that redirects traffic from port 514 to 5555 udp(or any port you set graylog_input_port to). 
  - More redirects cand be added easily. The input that listens to port 5555 is also aded automatically, as a raw UDP Input, but it can be changed easily to something else.
  - The input types are:
 
 ```
-org.graylog2.inputs.amqp.AMQPInput
-org.graylog2.inputs.codecs.CodecsModule
-org.graylog2.inputs.gelf.http.GELFHttpInput
-org.graylog2.inputs.gelf.tcp.GELFTCPInput
-org.graylog2.inputs.gelf.udp.GELFUDPInput
-org.graylog2.inputs.kafka.KafkaInput
-org.graylog2.inputs.misc.jsonpath.JsonPathInput
-org.graylog2.inputs.misc.metrics.LocalMetricsInput
-org.graylog2.inputs.radio.RadioAMQPInput
-org.graylog2.inputs.radio.RadioKafkaInput
-org.graylog2.inputs.random.FakeHttpMessageInput
-org.graylog2.inputs.raw.tcp.RawTCPInput
-org.graylog2.inputs.raw.udp.RawUDPInput
-org.graylog2.inputs.syslog.tcp.SyslogTCPInput
-org.graylog2.inputs.syslog.udp.SyslogUDPInput
-org.graylog2.inputs.transports.TransportsModule
-org.graylog2.plugin.inject.Graylog2Module
-org.graylog2.plugin.inputs.MessageInput
+org.graylog.inputs.amqp.AMQPInput
+org.graylog.inputs.codecs.CodecsModule
+org.graylog.inputs.gelf.http.GELFHttpInput
+org.graylog.inputs.gelf.tcp.GELFTCPInput
+org.graylog.inputs.gelf.udp.GELFUDPInput
+org.graylog.inputs.kafka.KafkaInput
+org.graylog.inputs.misc.jsonpath.JsonPathInput
+org.graylog.inputs.misc.metrics.LocalMetricsInput
+org.graylog.inputs.radio.RadioAMQPInput
+org.graylog.inputs.radio.RadioKafkaInput
+org.graylog.inputs.random.FakeHttpMessageInput
+org.graylog.inputs.raw.tcp.RawTCPInput
+org.graylog.inputs.raw.udp.RawUDPInput
+org.graylog.inputs.syslog.tcp.SyslogTCPInput
+org.graylog.inputs.syslog.udp.SyslogUDPInput
+org.graylog.inputs.transports.TransportsModule
+org.graylog.plugin.inject.GraylogModule
+org.graylog.plugin.inputs.MessageInput
 ```
- - Input json format borrowed from hggh https://github.com/hggh/graylog2-vagrant/blob/master/modules/repos/files/create_graylog2_inputs_gelf
+ - Input json format borrowed from hggh https://github.com/hggh/graylog-vagrant/blob/master/modules/repos/files/create_graylog_inputs_gelf
 
  - There is also a role that installs nginx and generates a self signed ceritifate. At the end you will be able to access the graylo2-web interface using https://IP.AD.DR or https://servername. This was solely done because I do not like java and java keystores and it was easier for me this way. You could also set use_self_signed_cert to no, and add your own cert and key in the format of {{ server_name }}.crt and {{ server_name }}.key
 
@@ -48,10 +48,10 @@ org.graylog2.plugin.inputs.MessageInput
 ```
 server_name: "{{ ansible_fqdn }}"
 
-graylog2_version: 0.91
+graylog_version: 1.0
 
-graylog2_input_port: 5555
-input_type: org.graylog2.inputs.raw.udp.RawUDPInput
+graylog_input_port: 5555
+input_type: org.graylog.inputs.raw.udp.RawUDPInput
 
 password_secret: thisisnotasecurepassword
 
@@ -60,7 +60,7 @@ root_password_sha2: e3c652f0ba0b4801205814f8b6bc49672c4c74e25b497770bb89b22cdeb4
 
 root_password_unencrypted: yourpassword
 
-mongodb_user: graylog2_user
+mongodb_user: graylog_user
 mongodb_password: 123456
 
 use_self_signed_cert: "yes"

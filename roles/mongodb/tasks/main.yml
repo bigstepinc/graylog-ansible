@@ -20,7 +20,7 @@
   service: name=mongod state=started enabled=yes
   tags: mongodb
 
-- name: create mongo user for graylog2
-  mongodb_user: database=graylog2 name={{ mongodb_user }} password={{ mongodb_password }} roles='readWrite,dbAdmin,userAdmin' state=present
+- name: create mongo user for graylog
+  mongodb_user: database=graylog name={{ mongodb_user }} password={{ mongodb_password }} roles='readWrite,dbAdmin,userAdmin' state=present
   tags: mongodb
 
